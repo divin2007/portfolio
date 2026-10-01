@@ -1,0 +1,17 @@
+{
+  "name": "portfolio",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "^1.4.2"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  },
+  "dependencies": {
+    "jose": "^6.2.12",
+    "mongodb": "^7.6.0",
+    "zod": "^4.6.5"
+  }
+}
