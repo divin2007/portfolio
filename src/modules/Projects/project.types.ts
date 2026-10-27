@@ -2,6 +2,7 @@ import z, { number } from "zod";
 import { LessonProjection, LessonSchema } from "../Lessons/lesson.type";
 import { ObjectId } from "mongodb";
 import { limits } from "../../utils/types";
+import { type CommentType,CommentSchema } from "../Comments/comments.type";
 const LinksSchema=z.object({
     link:z.url().nonempty(),
     name:z.string().max(200).min(2).nonempty(),
@@ -60,6 +61,13 @@ export const projectSchema=z.object({
 export const projectSchemaWithLesson=projectSchema.extend({
     lesson:z.array(LessonSchema)
 })
+export const projectSchemaWithLessonComment=projectSchema.extend({
+    lesson:z.array(LessonSchema),
+    comment:z.array(CommentSchema)
+})
+export const projectSchemaWithComment=projectSchema.extend({
+    comment:z.array(CommentSchema)
+})
 export const addProjectSchema=projectSchema.omit({
     _id:true,
     createdAt:true
@@ -116,7 +124,8 @@ export const findProjectRequest=z.object({
     projection:projectProjectionSchema,
     lessonProjection:LessonProjection.optional(),
     lessonLimits:limits.optional(),
-    lesson:z.boolean()
+    lesson:z.boolean(),
+    comment:z.boolean(),
 }).superRefine(
     (data,ctx)=>{
         if(data.lesson && (!data.lessonProjection||!data.lessonLimits)){
@@ -137,7 +146,8 @@ export const findProjectsRequest=z.object({
     lessonProjection:LessonProjection.optional(),
     lessonLimits:limits.optional(),
     limits:limits.nonoptional(),
-    lesson:z.boolean()
+    lesson:z.boolean(),
+    comment:z.boolean()
 }).superRefine(
     (data,ctx)=>{
         if(data.lesson && (!data.lessonProjection||!data.lessonLimits)){
@@ -159,7 +169,9 @@ export const findProjectsByFieldsRequest=z.object({
     fields:z.array(z.record(z.string(),z.string())).nonempty(),
     lessonLimits:limits.optional(),
     limits:limits.nonoptional(),
-    lesson:z.boolean()
+    lesson:z.boolean(),
+    comment:z.boolean(),
+
 }).superRefine(
     (data,ctx)=>{
         if(data.lesson && (!data.lessonProjection||!data.lessonLimits)){

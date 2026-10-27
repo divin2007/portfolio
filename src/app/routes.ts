@@ -1,3 +1,5 @@
+import { AddComment } from "../modules/Comments/comments.controller"
+import { deleteLesson } from "../modules/Lessons/lesson.repository"
 import { AddLesson, GetLessonById, GetLessonsFieldsByOrAnd, PatchLesson, RemoveLesson } from "../modules/Lessons/lessons.controller"
 import { CreateProject, GetProjectByID, GetProjects, GetProjectsByFields } from "../modules/Projects/project.controller"
 
@@ -32,6 +34,13 @@ const ProjectsRoutes={
     "/api/v1/projects/search":{
         GET:GetProjectsByFields,
     },
+}
+
+const CommentRoutes={
+    "/api/v1/comments":{
+        POST:AddComment,
+        DELETE:deleteLesson
     }
+}
 
 export const Routes={...LessonsRoutes,...ProjectsRoutes}

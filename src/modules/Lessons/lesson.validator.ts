@@ -16,9 +16,7 @@ export const toUpdateRequestLesson=(data:any):UpdateLessonRequestType=> {
     
     if(!result.success){
         throw new Error("watsupp beijin")
-    }
-        console.log(result,"valid")
-    
+    }    
     return result.data
 }
 
@@ -35,8 +33,6 @@ export const toLessonRemoveRequest=(data:any):LessonRemoveRequestType=>{
 
 export const toLessonSearchIdRequest=(data:any):LessonSearchIdRequestType=>{
     const result= LessonSearchIdRequest.safeParse(data)
-    console.log(data)
-    console.log(result.error)
     if(!result.success){
         throw new Error("watsupp beijin")
     }
@@ -46,7 +42,6 @@ export const toLessonSearchIdRequest=(data:any):LessonSearchIdRequestType=>{
 export const toLessonSearchByAndOrRequest=(data:any):LessonSearchByAndOrRequestType=>{
     const result=LessonSearchByAndOrRequest.safeParse(data)
     if(!result.success){
-        console.log(result.error)
         throw new Error("watsupp beijin")
     }
     return result.data 

@@ -1,8 +1,13 @@
 {
   "name": "portfolio",
-  "module": "index.ts",
+  "module": "server.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun --watch run server.ts",
+    "start": "bun run server.ts",
+    "typecheck": "tsc --noEmit"
+  },
   "devDependencies": {
     "@types/bun": "^1.4.2"
   },

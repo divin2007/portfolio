@@ -1,15 +1,27 @@
 # portfolio
 
-To install dependencies:
+Install the locked dependencies:
 
 ```bash
-bun install
+npm ci
 ```
 
-To run:
+Start the development server with file watching:
 
 ```bash
-bun run index.ts
+bun run dev
+```
+
+Start the server without file watching:
+
+```bash
+bun run start
+```
+
+Check TypeScript diagnostics:
+
+```bash
+bun run typecheck
 ```
 
 This project was created using `bun init` in bun v1.4.2. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
